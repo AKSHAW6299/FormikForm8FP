@@ -1,26 +1,19 @@
 import React, { useState } from "react";
 
 const SimpleForm = () => {
-  // Separate state hooks for each field
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [address, setAddress] = useState("");
-
-  // Array to store multiple submissions
   const [submittedData, setSubmittedData] = useState([]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Prevent submission if all fields are empty
     if (name.trim() === "" && email.trim() === "" && address.trim() === "") return;
 
     const newEntry = { name, email, address };
-
-    // Add new submission to array
     setSubmittedData((prev) => [...prev, newEntry]);
 
-    // Clear form
     setName("");
     setEmail("");
     setAddress("");
@@ -77,8 +70,8 @@ const SimpleForm = () => {
         </form>
       </div>
 
-      {/* Display multiple submitted data as cards */}
-      <div className="mt-6 flex flex-col gap-4 max-w-md mx-auto">
+      {/* Responsive grid for multiple cards */}
+      <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-7xl mx-auto">
         {submittedData.map((data, index) => (
           <div
             key={index}
